@@ -15,6 +15,7 @@ class BinutilsBuilder(Builder):
         super().__init__()
 
         self.cflags = ['-flto -O3 -pipe -ffunction-sections -fdata-sections']
+        self.ldflags = ['-O3']
         self.configure_flags = [
             '--disable-compressed-debug-sections',
             '--disable-gdb',
@@ -52,6 +53,7 @@ class BinutilsBuilder(Builder):
 
         self.configure_vars['CFLAGS'] = ' '.join(self.cflags)
         self.configure_vars['CXXFLAGS'] = ' '.join(self.cflags)
+        self.configure_vars['LDFLAGS'] = ' '.join(self.ldflags)
 
         self.clean_build_folder()
         self.folders.build.mkdir(exist_ok=True, parents=True)
